@@ -1,0 +1,15 @@
+
+{
+    "name": "texasexes/d8-theme-admin",
+    "description": "Texas Exes D8 Admin Theme",
+    "type": "drupal-theme",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jeff Cardwell",
+            "email": "jeff.cardwell@texasexes.org"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
