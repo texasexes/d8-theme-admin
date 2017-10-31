@@ -2,7 +2,7 @@
 {
     "name": "texasexes/d8-theme-admin",
     "description": "Texas Exes D8 Admin Theme",
-    "type": "drupal-theme",
+    "type": "drupal-theme-custom",
     "license": "MIT",
     "authors": [
         {
