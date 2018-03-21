@@ -5,8 +5,9 @@ description: 'Texas Exes administration theme with base theme of Adminimal.'
 package: Core
 version: VERSION
 core: 8.x
-libraries:
-  - adminimal_theme/global-styling
+
+libraries-override:
+  adminimal_theme/global-styling: false
 
 regions:
   header: 'Header'
