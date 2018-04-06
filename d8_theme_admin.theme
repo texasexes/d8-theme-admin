@@ -171,7 +171,11 @@ function d8_theme_admin_preprocess_field(&$variables) {
   }
 }
 
-  function d8_theme_admin_preprocess_paragraph(&$variables) {
+function d8_theme_admin_preprocess_paragraph(&$variables) {
+  // hack because of bug somewhere where fields are not sorted by their weight
+  // in the view mode, yet are indicated as sorted -- only happens here in the
+  // admin theme
+  uasort($variables['content'], 'Drupal\Component\Utility\SortArray::sortByWeightProperty');
 
   $paragraph = $variables['elements']['#paragraph'];
 
@@ -224,35 +228,49 @@ function d8_theme_admin_preprocess_field(&$variables) {
 
       $variables['paragraph_base_class'] = $paragraph_layout_type_value;
       $variables['paragraph_modifiers'] = $paragraph_modifiers;
+
+
+      // if (!empty($loaded_entity->get('field_txex_ref_para_view_mode')->first())) {
+      //   $paragraph_view_mode = $loaded_entity->get('field_txex_ref_para_view_mode')->first()->getValue();
+      //   $paragraph_view_mode_value = $paragraph_view_mode['target_id'];
+      //   $paragraph_view_mode_value = explode('.', $paragraph_view_mode_value, 2)[1];
+      //   $variables['elements']['#view_mode'] = $paragraph_view_mode_value;
+      //   $variables['view_mode'] = $paragraph_view_mode_value;
+      // }
     }
   }
 
-  if ($paragraph->hasField('field_para_ref_02')) {
-    $referenced_paragraphs = $paragraph->get('field_para_ref_02')->getValue();
-
-    foreach ( $referenced_paragraphs as $key => $element ) {
-      $loaded_child_paragraph = \Drupal\paragraphs\Entity\Paragraph::load( $element['target_id'] );
-
-      if ($loaded_child_paragraph->hasField('field_node_ref_02')) {
-          $node_reference_field = $loaded_child_paragraph->get('field_node_ref_02')->first();
-
-        if ($node_reference_field) {
-          $referenced_entity = $node_reference_field->getValue();
-          $loaded_entity = \Drupal\node\Entity\Node::load($referenced_entity['target_id']);
-
-          if ($loaded_entity->hasField('field_txex_ref_para_view_mode')) {
-            if (!empty($loaded_entity->get('field_txex_ref_para_view_mode')->first())) {
-              $paragraph_view_mode = $loaded_entity->get('field_txex_ref_para_view_mode')->first()->getValue();
-              $paragraph_view_mode_value = $paragraph_view_mode['target_id'];
-              $paragraph_view_mode_value = explode('.', $paragraph_view_mode_value, 2)[1];
-              $variables['content']['field_para_ref_02'][$key]['#view_mode'] = $paragraph_view_mode_value;
-            }
-          }
-        }
-      }
-    }
-  }
+  // if ($paragraph->hasField('field_para_ref_02')) {
+  //   $referenced_paragraphs = $paragraph->get('field_para_ref_02')->getValue();
+  //
+  //   foreach ( $referenced_paragraphs as $key => $element ) {
+  //     $loaded_child_paragraph = \Drupal\paragraphs\Entity\Paragraph::load( $element['target_id'] );
+  //
+  //     if ($loaded_child_paragraph->hasField('field_node_ref_02')) {
+  //         $node_reference_field = $loaded_child_paragraph->get('field_node_ref_02')->first();
+  //
+  //       if ($node_reference_field) {
+  //         $referenced_entity = $node_reference_field->getValue();
+  //         $loaded_entity = \Drupal\node\Entity\Node::load($referenced_entity['target_id']);
+  //
+  //         if ($loaded_entity->hasField('field_txex_ref_para_view_mode')) {
+  //           if (!empty($loaded_entity->get('field_txex_ref_para_view_mode')->first())) {
+  //             $paragraph_view_mode = $loaded_entity->get('field_txex_ref_para_view_mode')->first()->getValue();
+  //             $paragraph_view_mode_value = $paragraph_view_mode['target_id'];
+  //             $paragraph_view_mode_value = explode('.', $paragraph_view_mode_value, 2)[1];
+  //             $variables['content']['field_para_ref_02'][$key]['#view_mode'] = $paragraph_view_mode_value;
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 }
+
+
+
+
+
 
 
 
