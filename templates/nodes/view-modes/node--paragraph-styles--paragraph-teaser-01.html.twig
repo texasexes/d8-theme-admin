@@ -1,7 +1,13 @@
 {% extends  "@d8-theme-main/nodes/node.html.twig" %}
 {% set attributes = attributes.addClass('paragraph-styles') %}
 
-{% block title %}{% endblock title %}
+{% block title %}
+  {{ title_prefix }}
+    <h2{{ title_attributes }}>
+      {{ label }}
+    </h2>
+  {{ title_suffix }}
+{% endblock title %}
 {% block submitted %}{% endblock submitted %}
 
 {% block content %}
