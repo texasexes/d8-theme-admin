@@ -141,10 +141,10 @@ function d8_theme_admin_preprocess_field(&$variables) {
 
   $parent_entity = $variables['element']['#object'];
 
-  if ($parent_entity->hasField('field_node_ref_02')) {
-    if (!$parent_entity->get('field_node_ref_02')->isEmpty()) {
+  if ($parent_entity->hasField('field_txex_ref_content_01')) {
+    if (!$parent_entity->get('field_txex_ref_content_01')->isEmpty()) {
 
-      $reference_field = $parent_entity->get('field_node_ref_02')->first();
+      $reference_field = $parent_entity->get('field_txex_ref_content_01')->first();
       $referenced_entity = $reference_field->getValue();
       $loaded_entity = \Drupal\node\Entity\Node::load($referenced_entity['target_id']);
 
@@ -180,8 +180,8 @@ function d8_theme_admin_preprocess_paragraph(&$variables) {
   $current_paragraph = $variables['elements']['#paragraph'];
   $paragraph_modifiers = [];
 
-  if ($variables['elements']['field_node_ref_02']) {
-    $reference_field = $current_paragraph->get('field_node_ref_02')->first();
+  if ($variables['elements']['field_txex_ref_content_01']) {
+    $reference_field = $current_paragraph->get('field_txex_ref_content_01')->first();
 
     if ($reference_field) {
       $paragraph_layout_type_value = "";
@@ -228,7 +228,9 @@ function d8_theme_admin_preprocess_paragraph(&$variables) {
     }
   }
 
-  if ($variables['elements']['field_txex_boolean_01']) {
+  // if ($variables['elements']['field_txex_boolean_01']) {
+
+  if ($current_paragraph->hasField('field_txex_boolean_01')) {
     if ($current_paragraph->get('field_txex_boolean_01')->getValue()) {
       $paragraph_reverse_order = $current_paragraph->get('field_txex_boolean_01')->first()->getValue();
       if ($paragraph_reverse_order['value']) {
@@ -240,14 +242,6 @@ function d8_theme_admin_preprocess_paragraph(&$variables) {
   $variables['paragraph_modifiers'] = $paragraph_modifiers;
 
 }
-
-
-
-
-
-
-
-
 
 function d8_theme_admin_theme_suggestions_views_view_alter(array &$suggestions, array $variables) {
     // If you want you can add a template suggestion for all views
