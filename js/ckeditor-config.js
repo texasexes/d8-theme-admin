@@ -26,7 +26,10 @@
               },
               p: function(el) {
                 el.addClass('wysiwyg__p wysiwyg__p--alt-dw');
-              }
+              },
+              ul: function(el) {
+                el.addClass('wysiwyg__ul');
+              },
             }
           });
         });
