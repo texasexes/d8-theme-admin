@@ -1,0 +1,5 @@
+ckeditor_js:
+  js:
+    js/ckeditor-config.js: {}
+  dependencies:
+    - core/drupal

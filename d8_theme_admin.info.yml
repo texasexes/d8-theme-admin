@@ -9,6 +9,9 @@ core: 8.x
 libraries-override:
   adminimal_theme/global-styling: false
 
+libraries:
+  - 'd8_theme_admin/ckeditor_js'
+
 regions:
   header: 'Header'
   pre_content: 'Pre-content'
