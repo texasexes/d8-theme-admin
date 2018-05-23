@@ -30,6 +30,12 @@
               ul: function(el) {
                 el.addClass('wysiwyg__ul');
               },
+              ol: function(el) {
+                el.addClass('wysiwyg__ol');
+              },
+              a: function(el) {
+                el.addClass('wysiwyg__link wysiwyg__link--alt-dw');
+              },
             }
           });
         });
