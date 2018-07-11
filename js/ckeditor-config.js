@@ -23,7 +23,7 @@
                         el.attributes.class = classes.join(" ").trim();
                       }
 
-                      el.addClass('wysiwyg__h1 wysiwyg__h1--alt-dw');
+                      el.addClass('wysiwyg__h1');
                     },
                     h2: function(el) {
                       // remove classes with this prefix -- this allows other
@@ -35,7 +35,7 @@
                         });
                         el.attributes.class = classes.join(" ").trim();
                       }
-                      el.addClass('wysiwyg__h2 wysiwyg__h2--alt-dw');
+                      el.addClass('wysiwyg__h2');
                     },
                     h3: function(el) {
                       // remove classes with this prefix -- this allows other
@@ -47,7 +47,7 @@
                         });
                         el.attributes.class = classes.join(" ").trim();
                       }
-                      el.addClass('wysiwyg__h3 wysiwyg__h3--alt-dw');
+                      el.addClass('wysiwyg__h3');
                     },
                     h4: function(el) {
                       // remove classes with this prefix -- this allows other
@@ -59,7 +59,31 @@
                         });
                         el.attributes.class = classes.join(" ").trim();
                       }
-                      el.addClass('wysiwyg__h4 wysiwyg__h4--alt-dw');
+                      el.addClass('wysiwyg__h4');
+                    },
+                    h5: function(el) {
+                      // remove classes with this prefix -- this allows other
+                      // alignment classes from the editor to stick
+                      if (el.attributes.class) {
+                        var prefix = "wysiwyg";
+                        var classes = el.attributes.class.split(" ").filter(function(c) {
+                            return c.lastIndexOf(prefix, 0) !== 0;
+                        });
+                        el.attributes.class = classes.join(" ").trim();
+                      }
+                      el.addClass('wysiwyg__h5');
+                    },
+                    h6: function(el) {
+                      // remove classes with this prefix -- this allows other
+                      // alignment classes from the editor to stick
+                      if (el.attributes.class) {
+                        var prefix = "wysiwyg";
+                        var classes = el.attributes.class.split(" ").filter(function(c) {
+                            return c.lastIndexOf(prefix, 0) !== 0;
+                        });
+                        el.attributes.class = classes.join(" ").trim();
+                      }
+                      el.addClass('wysiwyg__h6');
                     },
                     p: function(el) {
                       // remove classes with this prefix -- this allows other
@@ -71,7 +95,7 @@
                         });
                         el.attributes.class = classes.join(" ").trim();
                       }
-                      el.addClass('wysiwyg__p wysiwyg__p--alt-dw');
+                      el.addClass('wysiwyg__p');
                     },
                     ul: function(el) {
                       // remove classes with this prefix -- this allows other
@@ -143,7 +167,7 @@
                         });
                         el.attributes.class = classes.join(" ").trim();
                       }
-                      el.addClass('wysiwyg__link wysiwyg__link--alt-dw');
+                      el.addClass('wysiwyg__link');
                     },
                   }
         				};
