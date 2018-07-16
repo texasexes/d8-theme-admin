@@ -70,11 +70,26 @@ function d8_theme_admin_preprocess_image(&$variables) {
 
  }
 function d8_theme_admin_theme_suggestions_image_alter(array &$suggestions, array $variables) {
+  $fieldParentBundle = NULL;
+  $fieldParentBundleType = NULL;
+  $fieldName = NULL;
+  $fieldNameBundle = NULL;
 
-  $fieldParentBundle = $variables['attributes']['field_info']['field_parent_bundle'];
-  $fieldParentBundleType = $variables['attributes']['field_info']['field_parent_bundle_type'];
-  $fieldName = $variables['attributes']['field_info']['field_name'];
-  $fieldNameBundle = $variables['attributes']['field_info']['field_name_bundle'];
+  if (isset($variables['attributes']['field_info']['field_parent_bundle'])) {
+    $fieldParentBundle = $variables['attributes']['field_info']['field_parent_bundle'];
+  }
+
+  if (isset($variables['attributes']['field_info']['field_parent_bundle_type'])) {
+    $fieldParentBundleType = $variables['attributes']['field_info']['field_parent_bundle_type'];
+  }
+
+  if (isset($variables['attributes']['field_info']['field_name'])) {
+    $fieldName = $variables['attributes']['field_info']['field_name'];
+  }
+
+  if (isset($variables['attributes']['field_info']['field_name_bundle'])) {
+    $fieldNameBundle = $variables['attributes']['field_info']['field_name_bundle'];
+  }
 
   array_push($suggestions, $variables['theme_hook_original'] . "__" . $fieldParentBundleType);
   array_push($suggestions, $variables['theme_hook_original'] . "__" . $fieldParentBundleType . "__" . $fieldParentBundle);
