@@ -169,6 +169,54 @@
                       }
                       el.addClass('wysiwyg__link');
                     },
+                    table: function(el) {
+                      // remove classes with this prefix -- this allows other
+                      // alignment classes from the editor to stick
+                      if (el.attributes.class) {
+                        var prefix = "wysiwyg";
+                        var classes = el.attributes.class.split(" ").filter(function(c) {
+                            return c.lastIndexOf(prefix, 0) !== 0;
+                        });
+                        el.attributes.class = classes.join(" ").trim();
+                      }
+                      el.addClass('wysiwyg__table');
+                    },
+                    tbody: function(el) {
+                      // remove classes with this prefix -- this allows other
+                      // alignment classes from the editor to stick
+                      if (el.attributes.class) {
+                        var prefix = "wysiwyg";
+                        var classes = el.attributes.class.split(" ").filter(function(c) {
+                            return c.lastIndexOf(prefix, 0) !== 0;
+                        });
+                        el.attributes.class = classes.join(" ").trim();
+                      }
+                      el.addClass('wysiwyg__tbody');
+                    },
+                    tr: function(el) {
+                      // remove classes with this prefix -- this allows other
+                      // alignment classes from the editor to stick
+                      if (el.attributes.class) {
+                        var prefix = "wysiwyg";
+                        var classes = el.attributes.class.split(" ").filter(function(c) {
+                            return c.lastIndexOf(prefix, 0) !== 0;
+                        });
+                        el.attributes.class = classes.join(" ").trim();
+                      }
+                      el.addClass('wysiwyg__tr');
+                    },
+                    td: function(el) {
+                      // remove classes with this prefix -- this allows other
+                      // alignment classes from the editor to stick
+                      if (el.attributes.class) {
+                        var prefix = "wysiwyg";
+                        var classes = el.attributes.class.split(" ").filter(function(c) {
+                            return c.lastIndexOf(prefix, 0) !== 0;
+                        });
+                        el.attributes.class = classes.join(" ").trim();
+                      }
+                      el.addClass('wysiwyg__td');
+                    },
                   }
         				};
 
