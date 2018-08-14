@@ -138,18 +138,18 @@ function d8_theme_admin_theme_registry_alter(&$theme_registry) {
   $theme_registry['menu']['variables']['top_parent'] = "TEST";
 }
 
-function d8_theme_admin_preprocess_breadcrumb(&$variables) {
-  if (($node = \Drupal::routeMatch()->getParameter('node')) && $variables['breadcrumb']) {
-    $title = $node->getTitle();
-    $path = \Drupal::service('path.current')->getPath();
-
-    foreach ($variables['breadcrumb'] as $key => $value) {
-      if ($variables['breadcrumb'][$key]['url'] == $path) {
-        $variables['breadcrumb'][$key]['text'] = $title;
-      }
-    }
-  }
-}
+// function d8_theme_admin_preprocess_breadcrumb(&$variables) {
+//   if (($node = \Drupal::routeMatch()->getParameter('node')) && $variables['breadcrumb']) {
+//     $title = $node->getTitle();
+//     $path = \Drupal::service('path.current')->getPath();
+//
+//     foreach ($variables['breadcrumb'] as $key => $value) {
+//       if ($variables['breadcrumb'][$key]['url'] == $path) {
+//         $variables['breadcrumb'][$key]['text'] = $title;
+//       }
+//     }
+//   }
+// }
 
 function d8_theme_admin_preprocess_field(&$variables) {
   //get the value of the field
