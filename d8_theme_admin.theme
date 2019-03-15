@@ -153,7 +153,8 @@ function d8_theme_admin_theme_registry_alter(&$theme_registry) {
 
 function d8_theme_admin_preprocess_field(&$variables) {
   //get the value of the field
-
+  $field_layout_type_value = NULL;
+  $field_modifiers = NULL;
   $parent_entity = $variables['element']['#object'];
 
   if ($parent_entity->hasField('field_txex_ref_content_01')) {
@@ -162,21 +163,22 @@ function d8_theme_admin_preprocess_field(&$variables) {
       $reference_field = $parent_entity->get('field_txex_ref_content_01')->first();
       $referenced_entity = $reference_field->getValue();
       $loaded_entity = \Drupal\node\Entity\Node::load($referenced_entity['target_id']);
-
-      if ($loaded_entity->hasField('field_txex_text_list_08')) {
-        if (!$loaded_entity->get('field_txex_text_list_08')->isEmpty()){
-          $field_layout_type = $loaded_entity->get('field_txex_text_list_08')->first()->getValue();
-          $field_layout_type_value = $field_layout_type['value'];
+      if (isset($loaded_entity)) {
+        if ($loaded_entity->hasField('field_txex_text_list_08')) {
+          if (!$loaded_entity->get('field_txex_text_list_08')->isEmpty()){
+            $field_layout_type = $loaded_entity->get('field_txex_text_list_08')->first()->getValue();
+            $field_layout_type_value = $field_layout_type['value'];
+          }
         }
-      }
 
-      $field_modifiers = [];
+        $field_modifiers = [];
 
-      if ($loaded_entity->hasField('field_txex_text_list_07')) {
-        if (!$loaded_entity->get('field_txex_text_list_07')->isEmpty()) {
-          $field_text_type = $loaded_entity->get('field_txex_text_list_07')->first()->getValue();
-          $field_text_type_value = $field_text_type['value'];
-          $field_modifiers = $field_modifiers + array($field_text_type_value => $field_text_type_value);
+        if ($loaded_entity->hasField('field_txex_text_list_07')) {
+          if (!$loaded_entity->get('field_txex_text_list_07')->isEmpty()) {
+            $field_text_type = $loaded_entity->get('field_txex_text_list_07')->first()->getValue();
+            $field_text_type_value = $field_text_type['value'];
+            $field_modifiers = $field_modifiers + array($field_text_type_value => $field_text_type_value);
+          }
         }
       }
 
@@ -195,7 +197,7 @@ function d8_theme_admin_preprocess_paragraph(&$variables) {
   $current_paragraph = $variables['elements']['#paragraph'];
   $paragraph_modifiers = [];
 
-  if ($variables['elements']['field_txex_ref_content_01']) {
+  if (array_key_exists('field_txex_ref_content_01', $variables['elements'])) {
     $reference_field = $current_paragraph->get('field_txex_ref_content_01')->first();
 
     if ($reference_field) {
