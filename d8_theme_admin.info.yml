@@ -8,6 +8,7 @@ core: 8.x
 
 libraries-override:
   adminimal_theme/global-styling: false
+  adminimal_theme/google-fonts: false
 
 libraries:
   - 'd8_theme_admin/ckeditor_js'
