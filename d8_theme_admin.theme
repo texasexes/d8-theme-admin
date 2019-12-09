@@ -1,5 +1,5 @@
 <?php
-require_once('modules/contrib/devel/kint/kint/Kint.class.php');
+// require_once('modules/contrib/devel/kint/kint/Kint.class.php');
 /**
  * @file
  * Functions to support theming in the Pattern Lab theme.
